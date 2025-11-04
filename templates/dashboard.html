@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard">
+  <div class="dashboard-header">
+    <h2 class="dashboard-title">
+      <span class="title-icon">📊</span>
+      COMMAND CENTER
+    </h2>
+    <a class="btn btn-primary btn-glow" href="{{ url_for('new_institution') }}">
+      <span>➕ Add Institution</span>
+    </a>
+  </div>
+  
+  {% if institutions %}
+  <div class="table-container">
+    <table class="table-futuristic">
+      <thead>
+        <tr>
+          <th>Institution Name</th>
+          <th>Address</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for inst in institutions %}
+        <tr class="table-row">
+          <td>
+            <div class="institution-name">
+              <span class="inst-icon">🏛️</span>
+              {{ inst.name }}
+            </div>
+          </td>
+          <td>{{ inst.address }}</td>
+          <td>
+            <a href="{{ url_for('institution_report', id=inst._id) }}" class="btn btn-sm btn-action">
+              <span>📈 View Report</span>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="empty-state">
+    <div class="empty-icon">🏢</div>
+    <h3>No Institutions Yet</h3>
+    <p>Start by adding your first institution to track</p>
+    <a class="btn btn-primary btn-glow" href="{{ url_for('new_institution') }}">
+      <span>Add First Institution</span>
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

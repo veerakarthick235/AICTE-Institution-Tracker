@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="report">
+  <div class="report-header">
+    <h2 class="report-title">
+      <span class="title-icon">📈</span>
+      {{ institution.name }}
+    </h2>
+    <p class="report-subtitle">📍 {{ institution.address }}</p>
+  </div>
+  
+  <div class="report-grid">
+    <!-- Document Sufficiency Card -->
+    <div class="stat-card">
+      <div class="stat-header">
+        <span class="stat-icon">📄</span>
+        <h3>Document Sufficiency</h3>
+      </div>
+      <div class="stat-body">
+        <div class="progress-ring">
+          <svg width="120" height="120">
+            <circle cx="60" cy="60" r="54" class="progress-ring-circle-bg"></circle>
+            <circle cx="60" cy="60" r="54" class="progress-ring-circle"
+                    style="stroke-dashoffset: calc(339.292 - (339.292 * {{ sufficiency.percentage }}) / 100)"></circle>
+          </svg>
+          <div class="progress-text">{{ sufficiency.percentage }}%</div>
+        </div>
+        <div class="stat-details">
+          <div class="stat-item">
+            <span class="stat-label">Provided:</span>
+            <span class="stat-value success">{{ sufficiency.present }}</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-label">Missing:</span>
+            <span class="stat-value danger">{{ sufficiency.missing }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Performance Score Card -->
+    <div class="stat-card">
+      <div class="stat-header">
+        <span class="stat-icon">⚡</span>
+        <h3>Performance Score</h3>
+      </div>
+      <div class="stat-body">
+        <div class="score-display">
+          <div class="score-number">{{ perf_score }}</div>
+          <div class="score-max">/ 100</div>
+        </div>
+        <div class="score-bar">
+          <div class="score-fill" style="width: {{ perf_score }}%"></div>
+        </div>
+        <div class="score-label">
+          {% if perf_score >= 80 %}
+            <span class="badge badge-success">Excellent</span>
+          {% elif perf_score >= 60 %}
+            <span class="badge badge-warning">Good</span>
+          {% else %}
+            <span class="badge badge-danger">Needs Improvement</span>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="report-actions">
+    <a class="btn btn-primary btn-glow" href="{{ url_for('dashboard') }}">
+      <span>← Back to Dashboard</span>
+    </a>
+  </div>
+</div>
+{% endblock %}

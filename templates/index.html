@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="glitch" data-text="WELCOME TO THE FUTURE">WELCOME TO THE FUTURE</span>
+    </h1>
+    <h2 class="hero-subtitle">Institution Tracking System</h2>
+    <p class="hero-description">
+      Next-generation platform for capturing institutional data and producing advanced performance reports.
+      Track metrics, analyze performance, and drive excellence.
+    </p>
+    <div class="hero-buttons">
+      <a class="btn btn-primary btn-glow" href="{{ url_for('register') }}">
+        <span>🚀 Get Started</span>
+      </a>
+      <a class="btn btn-secondary" href="{{ url_for('login') }}">
+        <span>🔐 Login</span>
+      </a>
+    </div>
+  </div>
+  
+  <div class="features">
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Advanced Analytics</h3>
+      <p>Real-time performance metrics and insights</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Document Tracking</h3>
+      <p>Monitor compliance and document sufficiency</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Instant Reports</h3>
+      <p>Generate comprehensive reports instantly</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
